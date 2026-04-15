@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4CAF50">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="わくわく算数3">
+  <meta name="format-detection" content="telephone=no">
+  <title>わくわく算数 3年生</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ローディング -->
+<div class="loading-overlay" id="loading-overlay">
+  <div class="loading-spinner"></div>
+  <div style="font-weight:800; color:var(--green);">よみこみ中...</div>
+</div>
+
+<!-- ========== ログイン画面 ========== -->
+<div class="page" id="page-auth">
+  <div class="auth-card">
+    <div class="auth-mascot">🐻</div>
+    <h1 class="auth-title">わくわく算数</h1>
+    <p class="auth-subtitle">3年生の算数を楽しく勉強しよう！</p>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">ログイン</button>
+      <button class="auth-tab" data-tab="signup">新規登録</button>
+    </div>
+
+    <form id="auth-form" novalidate>
+      <div class="form-group" id="auth-username-wrap" style="display:none">
+        <label class="form-label" for="auth-username">ニックネーム</label>
+        <input class="form-input" id="auth-username" type="text"
+               placeholder="たとえば：たろう" autocomplete="nickname">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="auth-email">メールアドレス</label>
+        <input class="form-input" id="auth-email" type="email"
+               placeholder="example@mail.com" autocomplete="email" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="auth-password">パスワード（6文字以上）</label>
+        <input class="form-input" id="auth-password" type="password"
+               placeholder="••••••••" autocomplete="current-password" required>
+      </div>
+      <button class="btn-primary" id="auth-submit" type="submit">ログイン</button>
+      <div class="auth-error" id="auth-error"></div>
+    </form>
+  </div>
+</div>
+
+<!-- ========== ホーム画面 ========== -->
+<div class="page" id="page-home">
+  <header class="header">
+    <a class="header-logo" href="#">🐻 わくわく算数 3年</a>
+    <div class="header-user">
+      <span class="header-username" id="header-username"></span>
+      <button class="btn-logout" id="btn-logout">ログアウト</button>
+    </div>
+  </header>
+
+  <div class="home-banner">
+    <div class="home-welcome" id="home-welcome">こんにちは！</div>
+    <div class="home-title">🔢 わくわく算数 3年生</div>
+    <div class="home-subtitle">啓林館「わくわく算数3」じゅんきょ</div>
+    <div class="home-stars-bar" id="home-stars-bar">☆☆☆☆☆</div>
+  </div>
+
+  <!-- 科目ナビ -->
+  <div style="padding:10px 16px 0;">
+    <p style="text-align:center; font-size:.78rem; color:#888; font-weight:700; margin-bottom:8px;">📚 ほかの科目</p>
+    <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+      <a href="index.html" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 10px;border-radius:12px;background:#4CAF50;color:#fff;font-weight:800;font-size:.72rem;text-decoration:none;min-width:50px;box-shadow:0 0 0 3px #fff,0 0 0 5px #4CAF50;">🐻<br>算数</a>
+      <a href="kokugo.html" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 10px;border-radius:12px;background:#E85D75;color:#fff;font-weight:800;font-size:.72rem;text-decoration:none;min-width:50px;">🦊<br>国語</a>
+      <a href="rika.html" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 10px;border-radius:12px;background:#00ACC1;color:#fff;font-weight:800;font-size:.72rem;text-decoration:none;min-width:50px;">🔬<br>理科</a>
+      <a href="shakai.html" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 10px;border-radius:12px;background:#FF7043;color:#fff;font-weight:800;font-size:.72rem;text-decoration:none;min-width:50px;">🗺️<br>社会</a>
+      <a href="eigo.html" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 10px;border-radius:12px;background:#7E57C2;color:#fff;font-weight:800;font-size:.72rem;text-decoration:none;min-width:50px;">🌏<br>英語</a>
+    </div>
+  </div>
+
+  <div class="units-container">
+    <div class="units-heading">📖 単元一覧（14単元）</div>
+    <div id="unit-list"></div>
+  </div>
+</div>
+
+<!-- ========== 単元画面 ========== -->
+<div class="page" id="page-unit">
+  <header class="header">
+    <a class="header-logo" href="#">🐻 わくわく算数 3年</a>
+    <div class="header-user">
+      <span class="header-username" id="header-username2"></span>
+      <button class="btn-logout" id="btn-logout2">ログアウト</button>
+    </div>
+  </header>
+
+  <div class="unit-header">
+    <div class="unit-header-back">
+      <button class="btn-back" id="btn-back-home">← もどる</button>
+    </div>
+    <div class="unit-header-title">単元1：かけ算</div>
+    <div class="unit-header-sub">啓林館「わくわく算数3」</div>
+  </div>
+
+  <div class="unit-tabs">
+    <button class="unit-tab active" data-target="sansu-unit1-explanation">📖 解説</button>
+    <button class="unit-tab" data-target="sansu-unit1-practice">✏️ 練習問題</button>
+    <button class="unit-tab" data-target="sansu-unit1-test">📝 テスト</button>
+  </div>
+
+  <div class="unit-tab-content active" id="sansu-unit1-explanation"></div>
+  <div class="unit-tab-content" id="sansu-unit1-practice"></div>
+  <div class="unit-tab-content" id="sansu-unit1-test"></div>
+</div>
+
+<!-- ========== スクリプト ========== -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/progress.js"></script>
+<script src="js/sansu-unit1.js"></script>
+<script src="js/sansu-app.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('btn-logout2')?.addEventListener('click', async () => {
+      await Auth.logout();
+      SansuApp.showPage('auth');
+    });
+  });
+</script>
+
+</body>
+</html>
